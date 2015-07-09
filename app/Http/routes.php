@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['as' => 'welcome', 'uses' => 'MainController@welcome']);
+
+Route::get('gallery', ['as' => 'gallery', 'uses' => 'MainController@gallery']);
+
+Route::get('map', ['as' => 'map', 'uses' => 'MainController@map']);
+
+Route::get('maps/{source}', ['as' => 'map.tile', 'uses' => 'MainController@mapTile']);

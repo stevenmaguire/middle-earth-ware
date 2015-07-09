@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Contracts;
+use App\Services;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +25,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+            Contracts\Photoable::class,
+            Services\Flickr::class
+        );
+
+        $this->app->bind(
+            Contracts\Mappable::class,
+            Services\Tiler::class
+        );
     }
 }

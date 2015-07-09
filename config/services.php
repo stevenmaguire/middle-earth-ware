@@ -14,6 +14,15 @@ return [
     |
     */
 
+    'flickr' => [
+        'key' => env('FLICKR_KEY'),
+        'secret' => env('FLICKR_SECRET'),
+    ],
+
+    'google' => [
+        'key' => env('GOOGLE_API_KEY'),
+    ],
+
     'mailgun' => [
         'domain' => '',
         'secret' => '',
@@ -34,5 +43,4 @@ return [
         'key'    => '',
         'secret' => '',
     ],
-
 ];
