@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', ['as' => 'welcome', 'uses' => 'MainController@welcome']);
+Route::group(['middleware' => 'secure.content'], function () {
+    Route::get('/', ['as' => 'welcome', 'uses' => 'MainController@welcome']);
 
-Route::get('gallery', ['as' => 'gallery', 'uses' => 'MainController@gallery']);
+    Route::get('gallery', ['middleware' => 'secure.content:flickr', 'as' => 'gallery', 'uses' => 'MainController@gallery']);
 
-Route::get('map', ['as' => 'map', 'uses' => 'MainController@map']);
+    Route::get('map', ['middleware' => 'secure.content:google', 'as' => 'map', 'uses' => 'MainController@map']);
+});
 
 Route::get('maps/{source}', ['as' => 'map.tile', 'uses' => 'MainController@mapTile']);

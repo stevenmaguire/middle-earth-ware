@@ -28,7 +28,7 @@ class Flickr implements Photoable
      *
      * @param  string  $keyword
      *
-     * @return [type]  [description]
+     * @return Collection
      *
      * https://api.flickr.com/services/rest/
      *     ?method=flickr.photos.search
@@ -48,7 +48,7 @@ class Flickr implements Photoable
                     'nojsoncallback' => '1',
                     'sort' => 'interestingness-desc',
                     'per_page' => $count,
-                    'page' => rand(1,100),
+                    'page' => rand(1, 100),
                     'api_key' => $this->apiKey,
                     'text' => $keyword,
                 ]]
@@ -86,7 +86,8 @@ class Flickr implements Photoable
     protected function createImage($payload)
     {
         $image = new Image;
-        $image->url = 'https://farm'.$payload->farm.'.staticflickr.com/'.$payload->server.'/'.$payload->id.'_'.$payload->secret.'.jpg';
+        $image->url = 'https://farm' . $payload->farm . '.staticflickr.com/' .
+            $payload->server . '/' . $payload->id . '_' . $payload->secret . '.jpg';
 
         return $image;
     }

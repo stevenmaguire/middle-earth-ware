@@ -19,6 +19,7 @@ class ExampleTest extends TestCase
     {
         $this->visit('/')
              ->seeHeader('Content-Type', 'text/html; charset=UTF-8')
+             ->seeHeader('Content-Security-Policy', "base-uri 'self'; font-src 'self' fonts.gstatic.com; img-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' fonts.googleapis.com")
              ->see('Welcome to Middle Earth')
              ->see('Explore the map')
              ->see('See the sights');
@@ -45,6 +46,7 @@ class ExampleTest extends TestCase
 
         $this->visit('/gallery')
              ->seeHeader('Content-Type', 'text/html; charset=UTF-8')
+             ->seeHeader('Content-Security-Policy', "base-uri 'self'; font-src 'self' fonts.gstatic.com; img-src 'self' https://*.staticflickr.com; script-src 'self'; style-src 'self' 'unsafe-inline' fonts.googleapis.com")
              ->see('Middle Earth Photos');
 
         $imagesOnPage = $this->crawler->filter('img');
@@ -60,6 +62,7 @@ class ExampleTest extends TestCase
     {
         $this->visit('/map')
              ->seeHeader('Content-Type', 'text/html; charset=UTF-8')
+             ->seeHeader('Content-Security-Policy', "base-uri 'self'; font-src 'self' fonts.gstatic.com; img-src 'self' https://csi.gstatic.com https://maps.gstatic.com; script-src 'self' 'unsafe-eval' 'unsafe-inline' https://maps.googleapis.com https://maps.gstatic.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com")
              ->see('Middle Earth Map');
     }
 

@@ -31,6 +31,6 @@ class MainController extends Controller
 
     public function mapTile($source, Request $request)
     {
-        return $this->map->createTile($source,$request);
+        return $this->map->createTile($source, $request);
     }
 }
